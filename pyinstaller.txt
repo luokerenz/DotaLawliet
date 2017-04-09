@@ -1,0 +1,1 @@
+pyinstaller DotaLawliet.py -F -w
