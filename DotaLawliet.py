@@ -68,7 +68,8 @@ class WebAccessThread(QThread):
 
 				set_progress_number += 10
 				self.progressbar_update.emit(set_progress_number)
-		except:
+		except Exception as err:
+			print(err)
 			set_progress_number = 100
 			self.progressbar_update.emit(set_progress_number)
 

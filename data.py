@@ -46,8 +46,10 @@ def refreshMatch(serLogAdd):
         else:
             temp_list.append(0)
             temp_list.append(0)
-
-        mmr_esti = test_jsonFormat["mmr_estimate"]["estimate"]
+        if "estimate" in test_jsonFormat["mmr_estimate"]:
+            mmr_esti = test_jsonFormat["mmr_estimate"]["estimate"]
+        else:
+            mmr_esti = None
         solo_mmr = test_jsonFormat["solo_competitive_rank"]
         team_mmr = test_jsonFormat["competitive_rank"]
         temp_list.append(mmr_esti)
@@ -77,7 +79,11 @@ def reqUserAvatar(picAdd):
         picAdd = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb.jpg'
     else:
         pass
-    data = urlopen(picAdd).read()
+    try:
+        data = urlopen(picAdd).read()
+    except:
+        picAdd = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb.jpg'
+        data = urlopen(picAdd).read()
     return data
 
 def updateHeroRanking(steamID):
